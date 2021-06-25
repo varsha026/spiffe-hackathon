@@ -1,0 +1,24 @@
+<div class="e-layout">
+  <header class="e-layout__header e-layout__header-form">
+    <h1 class="e-layout__title">Admin Configuration</h1>
+    <!-- optional actions -->
+    <div class="e-layout__actions">
+      <button type="button" class="e-layout__action e-btn">Cancel</button>
+      <button type="button" class="e-layout__action e-btn e-btn-primary" (click)="onSave()">Save</button>
+    </div>
+  </header>
+  <div>
+    <div class="e-verticalnav">
+      <e-verticalnav-menu>
+        <e-verticalnav-item icon="e-api" value="Service Config" status="{{activeTab === 'service' ? 'active' : ''}}"
+          (click)="activeTab = 'service'"></e-verticalnav-item>
+        <e-verticalnav-item icon="cog" value="Proxy Authentication" status="{{activeTab === 'proxy' ? 'active' : ''}}"
+          (click)="activeTab = 'proxy'"></e-verticalnav-item>
+      </e-verticalnav-menu>
+      <div class="e-verticalnav__content">
+        <app-service-config #serviceConfig *ngIf="activeTab ==='service'"></app-service-config>
+        <app-proxy-config #proxyConfig *ngIf="activeTab === 'proxy'"></app-proxy-config>
+      </div>
+    </div>
+  </div>
+</div>
