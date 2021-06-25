@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BasicService } from 'src/app/services/basic.service';
 
 @Component({
@@ -7,15 +7,7 @@ import { BasicService } from 'src/app/services/basic.service';
   styleUrls: ['./service-config.component.scss']
 })
 export class ServiceConfigComponent implements OnInit {
-
-  configModel = {
-    service1: null,
-    service2: null,
-    service3: null
-  };
-  service1: any = null;
-  service2: any = null;
-  service3: any = null;
+  @Output() notificationEmitter = new EventEmitter();
 
   constructor(private basicService: BasicService) { }
 
@@ -42,6 +34,17 @@ export class ServiceConfigComponent implements OnInit {
     console.log(payload);
     this.basicService.updateServiceConfig(payload).subscribe((res) => {
       console.log("Response:", res);
+      this.notificationEmitter.emit({
+        type: 'success',
+        message: 'Updated successfully',
+        visible: true
+      });
+    }, err => {
+      this.notificationEmitter.emit({
+        type: 'error',
+        message: 'Error connecting to service',
+        visible: true
+      });
     });
   }
 

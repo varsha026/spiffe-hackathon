@@ -20,7 +20,7 @@ export class BasicService {
 
   updateServiceConfig(payload: any) {
     return this.httpClient
-      .post('http://localhost:8080', payload, BasicService.httpOptions);
+      .post('http://localhost:8081/proxy', payload, BasicService.httpOptions);
   }
 
 }

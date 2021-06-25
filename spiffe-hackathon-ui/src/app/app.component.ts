@@ -11,10 +11,29 @@ export class AppComponent {
   @ViewChild('serviceConfig') serviceConfig: ServiceConfigComponent | undefined;
   activeTab: string = 'service';
   title = 'spiffe-hackathon-ui';
+  notification = {
+    visible: false,
+    message: '',
+    type: 'success'
+  };
 
   constructor() { }
 
+  ngOnInit() {
+  }
   onSave() {
     this.serviceConfig?.onSave();
+  }
+
+  onCloseNotification() {
+    this.notification = {
+      message: '',
+      visible: false,
+      type: 'success'
+    };
+  }
+
+  setNotification(event: any) {
+    this.notification = event;
   }
 }

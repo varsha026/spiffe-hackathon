@@ -7,8 +7,14 @@
       <button type="button" class="e-layout__action e-btn e-btn-primary" (click)="onSave()">Save</button>
     </div>
   </header>
+  <e-notification closable [type]="notification.type" *ngIf="notification.visible" (close)="onCloseNotification()">
+    <e-notification-content>
+      {{notification.message}}
+    </e-notification-content>
+  </e-notification>
+  <br>
   <div>
-    <div class="e-verticalnav">
+    <div class="e-verticalnav e-verticalnav-fullheight">
       <e-verticalnav-menu>
         <e-verticalnav-item icon="e-api" value="Service Config" status="{{activeTab === 'service' ? 'active' : ''}}"
           (click)="activeTab = 'service'"></e-verticalnav-item>
@@ -16,7 +22,7 @@
           (click)="activeTab = 'proxy'"></e-verticalnav-item>
       </e-verticalnav-menu>
       <div class="e-verticalnav__content">
-        <app-service-config #serviceConfig *ngIf="activeTab ==='service'"></app-service-config>
+        <app-service-config #serviceConfig *ngIf="activeTab ==='service'" (notificationEmitter)="setNotification($event)"></app-service-config>
         <app-proxy-config #proxyConfig *ngIf="activeTab === 'proxy'"></app-proxy-config>
       </div>
     </div>
