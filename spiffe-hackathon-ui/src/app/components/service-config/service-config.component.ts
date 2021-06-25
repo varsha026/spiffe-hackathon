@@ -28,9 +28,8 @@ export class ServiceConfigComponent implements OnInit {
   onSave() {
     var payload: any[] = [];
     var elem: any[] = [];
-    elem.push({ serviceName: 'service1', domElem: document.querySelector('#service1Select') });
-    elem.push({ serviceName: 'service2', domElem: document.querySelector('#service2Select') });
-    elem.push({ serviceName: 'service3', domElem: document.querySelector('#service3Select') });
+    elem.push({ serviceName: 'SpringBootService', domElem: document.querySelector('#service1Select') });
+    elem.push({ serviceName: 'EchoService', domElem: document.querySelector('#service2Select') });
     elem.forEach(elementArr => {
       if (elementArr.domElem.value) {
         var servicesToCommunicate: any[] = [];
