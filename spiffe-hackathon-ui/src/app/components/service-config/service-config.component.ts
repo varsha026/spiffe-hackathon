@@ -40,7 +40,9 @@ export class ServiceConfigComponent implements OnInit {
       }
     });
     console.log(payload);
-    this.basicService.updateServiceConfig(payload);
+    this.basicService.updateServiceConfig(payload).subscribe((res) => {
+      console.log("Response:", res);
+    });
   }
 
 }
